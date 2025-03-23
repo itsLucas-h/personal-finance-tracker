@@ -1,13 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Controller } from "../types/express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { User } from "../models";
 
-export const registerUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
+export const registerUser: Controller = async (req, res, next) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -44,11 +40,7 @@ export const registerUser = async (
   }
 };
 
-export const loginUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
+export const loginUser: Controller = async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {

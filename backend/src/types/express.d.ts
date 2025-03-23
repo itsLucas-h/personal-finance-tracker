@@ -5,3 +5,14 @@ export type Controller = (
   res: Response,
   next: NextFunction
 ) => Promise<void>;
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: {
+        id: number;
+        email: string;
+      };
+    }
+  }
+}

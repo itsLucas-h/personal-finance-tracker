@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { testConnection, sequelize } from "./config/db";
 import { User } from "./models";
 import authRoutes from "./routes/auth.routes";
+import userRoutes from "./routes/user.routes";
 
 console.log("📦 Loaded models:", Object.keys(User));
 
@@ -23,6 +24,7 @@ app.get("/", (_req: Request, res: Response) => {
 
 // Register API routes
 app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
