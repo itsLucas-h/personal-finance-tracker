@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 import { testConnection, sequelize } from "./config/db";
 import { User } from "./models";
+import authRoutes from "./routes/auth.routes";
 
 console.log("📦 Loaded models:", Object.keys(User));
 
@@ -20,19 +21,20 @@ app.get("/", (_req: Request, res: Response) => {
   res.send("🎉 TypeScript Express Server is running!");
 });
 
-// Port
-const PORT = process.env.PORT || 5000;
+// Register API routes
+app.use("/api/auth", authRoutes);
 
 // Start server
+const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, async () => {
   console.log(`⏳ Starting backend on port ${PORT}...`);
 
-  // Test DB connection
+  // Test database connection
   await testConnection();
 
   // Sync Sequelize models with DB
   try {
-    console.log("⏳ Syncing database models...");
     await sequelize.sync();
     console.log("✅ All models synchronized successfully.");
   } catch (err) {
