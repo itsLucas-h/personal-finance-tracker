@@ -1,36 +1,31 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { sequelize } from "../config/db";
 
-interface TransactionAttributes {
+interface BudgetAttributes {
   id: number;
   userId: number;
-  type: "income" | "expense";
+  month: string;
   category: string;
   amount: number;
-  description?: string;
-  date: Date;
 }
 
-interface TransactionCreationAttributes
-  extends Optional<TransactionAttributes, "id"> {}
+interface BudgetCreationAttributes extends Optional<BudgetAttributes, "id"> {}
 
-export class Transaction
-  extends Model<TransactionAttributes, TransactionCreationAttributes>
-  implements TransactionAttributes
+export class Budget
+  extends Model<BudgetAttributes, BudgetCreationAttributes>
+  implements BudgetAttributes
 {
   public id!: number;
   public userId!: number;
-  public type!: "income" | "expense";
+  public month!: string;
   public category!: string;
   public amount!: number;
-  public description?: string;
-  public date!: Date;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
 
-Transaction.init(
+Budget.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -41,8 +36,8 @@ Transaction.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    type: {
-      type: DataTypes.ENUM("income", "expense"),
+    month: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     category: {
@@ -53,17 +48,10 @@ Transaction.init(
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING,
-    },
-    date: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
   },
   {
     sequelize,
-    tableName: "transactions",
-    modelName: "Transaction",
+    modelName: "Budget",
+    tableName: "budgets",
   }
 );
