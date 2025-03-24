@@ -8,6 +8,7 @@ import userRoutes from "./routes/user.routes";
 import transactionRoutes from "./routes/transaction.routes";
 import goalRoutes from "./routes/goal.routes";
 import budgetRoutes from "./routes/budget.routes";
+import reportRoutes from "./routes/report.routes";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use("/api/user", userRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/goals", goalRoutes);
 app.use("/api/budgets", budgetRoutes);
+app.use("/api/reports", reportRoutes);
 
 const PORT = process.env.PORT || 5000;
 
