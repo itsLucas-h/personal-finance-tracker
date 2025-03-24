@@ -31,7 +31,7 @@ export const getBudgets: Controller = async (req, res, next) => {
       order: [["month", "DESC"]],
     });
 
-    res.status(200).json({ budgets });
+    res.status(200).json({ message: "Goals fetched successfully", budgets });
   } catch (error) {
     console.error("❌ Get Budgets Error:", error);
     next(error);

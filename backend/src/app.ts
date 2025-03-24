@@ -3,13 +3,11 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import { testConnection, sequelize } from "./config/db";
-import { User } from "./models";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import transactionRoutes from "./routes/transaction.routes";
 import goalRoutes from "./routes/goal.routes";
-
-console.log("📦 Loaded models:", Object.keys(User));
+import budgetRoutes from "./routes/budget.routes";
 
 dotenv.config();
 
@@ -26,6 +24,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/transactions", transactionRoutes);
 app.use("/api/goals", goalRoutes);
+app.use("/api/budgets", budgetRoutes);
 
 const PORT = process.env.PORT || 5000;
 
