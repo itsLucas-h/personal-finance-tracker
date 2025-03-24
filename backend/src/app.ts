@@ -7,6 +7,7 @@ import { User } from "./models";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import transactionRoutes from "./routes/transaction.routes";
+import goalRoutes from "./routes/goal.routes";
 
 console.log("📦 Loaded models:", Object.keys(User));
 
@@ -24,6 +25,7 @@ app.get("/", (_req: Request, res: Response) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/transactions", transactionRoutes);
+app.use("/api/goals", goalRoutes);
 
 const PORT = process.env.PORT || 5000;
 
