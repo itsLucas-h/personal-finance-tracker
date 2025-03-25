@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import { apiLimiter } from "./middleware/rateLimit.middleware";
-import { testConnection, sequelize } from "./config/db";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/user.routes";
 import transactionRoutes from "./routes/transaction.routes";
@@ -33,19 +32,4 @@ app.use("/api/budgets", budgetRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/files", fileRoutes);
 
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, async () => {
-  console.log(`⏳ Starting backend on port ${PORT}...`);
-
-  await testConnection();
-
-  try {
-    await sequelize.sync();
-    console.log("✅ All models synchronized successfully.");
-  } catch (err) {
-    console.error("❌ Failed to sync Sequelize models:", err);
-  }
-
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+export default app;
