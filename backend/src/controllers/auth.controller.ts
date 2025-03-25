@@ -84,3 +84,22 @@ export const loginUser: Controller = async (req, res, next) => {
     next(error);
   }
 };
+
+export const deleteUserByEmail: Controller = async (req, res, next) => {
+  const { email } = req.params;
+
+  try {
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    await user.destroy();
+
+    res.status(200).json({ message: `User ${email} deleted successfully.` });
+  } catch (error) {
+    console.error("❌ Delete user error:", error);
+    next(error);
+  }
+};
