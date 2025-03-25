@@ -2,7 +2,6 @@ import { Controller } from "../types/express";
 import { Transaction, Budget } from "../models";
 import { Op, fn, col, where, literal } from "sequelize";
 
-// Monthly Income & Expense Summary
 export const getSummaryReport: Controller = async (req, res, next) => {
   try {
     const month = req.query.month as string;
@@ -42,7 +41,6 @@ export const getSummaryReport: Controller = async (req, res, next) => {
   }
 };
 
-// Income/Expense Trends Over Time
 export const getTrendsReport: Controller = async (req, res, next) => {
   try {
     const userId = req.user!.id;
@@ -65,7 +63,6 @@ export const getTrendsReport: Controller = async (req, res, next) => {
   }
 };
 
-// Budget vs Actual Spending Comparison
 export const getBudgetVsActualReport: Controller = async (req, res, next) => {
   try {
     const month = req.query.month as string;
