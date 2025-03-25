@@ -4,7 +4,7 @@ export type Controller = (
   req: Request,
   res: Response,
   next: NextFunction
-) => Promise<any>;
+) => void | Promise<any>;
 
 declare global {
   namespace Express {
